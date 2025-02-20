@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Currency Conversion API",
+    "description": "A simple API to convert currencies using exchange rates from CurrencyLayer.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/api/convert": {
+      "get": {
+        "summary": "Convert Currency",
+        "description": "Convert an amount from one currency to another using real-time exchange rates.",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "description": "The currency code to convert from (e.g., USD).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "USD"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "The currency code to convert to (e.g., EUR).",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "EUR"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "The amount to convert.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful conversion",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "from": {
+                      "type": "string",
+                      "example": "USD"
+                    },
+                    "to": {
+                      "type": "string",
+                      "example": "EUR"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "example": 100
+                    },
+                    "convertedAmount": {
+                      "type": "number",
+                      "example": 85.0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (e.g., missing or invalid parameters)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Missing required parameters: from, to, amount"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Something went wrong!"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
