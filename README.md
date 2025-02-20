@@ -22,7 +22,7 @@ Before running the project, ensure you have the following installed:
 ## Setup and Installation
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/currency-conversion-api.git
+   git clone https://github.com/ValterSahakyan/currency-conversion.git
    cd currency-conversion-api
 2. **Npm install**:
    ```bash
